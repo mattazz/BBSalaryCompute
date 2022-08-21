@@ -1,6 +1,7 @@
 list to-do:
 
-1. Implement while function to list data for both employees
-2. Make excel file beautiful
-3. Integrate google sheets for excel
-4. Rename excel file to current date
+[] Implement while function to list data for both employees
+[] Implement wage for overtime days
+[] Make excel file beautiful
+[] Integrate google sheets for excel
+[] Rename excel file to current date
