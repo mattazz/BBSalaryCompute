@@ -145,9 +145,10 @@ else:
 
     print('Please double check if information is accurate.')
 
-# Make DF for "All Output" Portion
-allDictTEST = pd.DataFrame(allDict)
-print(allDictTEST)
+if employeeSelect == '2':
+    # Make DF for "All Output" Portion
+    allDictTEST = pd.DataFrame(allDict)
+    print(allDictTEST)
 
 # allOutputDict.index = ['Gross Salary', 'PhilHealth Deduction', 'SSS Deduction', 'Pag-Ibig Deduction', 'Net Salary']
 outputQuestion = input('Would you want to save this info? (y/n)')
