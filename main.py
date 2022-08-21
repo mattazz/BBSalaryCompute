@@ -26,6 +26,8 @@ print('''Which employee:
     (1) Janet Apostol
     (2) Rizalyn Repalda
     ''')
+
+# Input a valid response
 while True:
     try:
         employeeSelect = input('Select (1/2): ')
@@ -35,6 +37,7 @@ while True:
         pass
     print('Input a valid number')
 
+# Making it easier to read by changing dictionary values to vars
 inputName = employeeDic[employeeSelect][0]
 inputWageperDay = employeeDic[employeeSelect][1]
 inputPhilhealth = employeeDic[employeeSelect][2]
@@ -59,6 +62,7 @@ wageDays = int(wageDays)
 
 salaryAmount = int(wageDays) * int(employeeDic[employeeSelect][1])
 
+# Computing benefit deductions
 sssDeduction = int(employeeDic[employeeSelect][3]) / (30 / wageDays)
 philHealthDeduction = int(employeeDic[employeeSelect][2]) / (30 / wageDays)
 pagIbigDeduction = int(employeeDic[employeeSelect][4]) / (30 / wageDays)
@@ -74,6 +78,7 @@ print()
 print(f'Net Salary: {netSalary}')
 print('=' * 80)
 
+# Generate Pandas Dataframe with output
 outputDic = pd.DataFrame({inputName: [salaryAmount, philHealthDeduction, sssDeduction, pagIbigDeduction, netSalary]})
 outputDic.index = ['Gross Salary', 'PhilHealth Deduction', 'SSS Deduction', 'Pag-Ibig Deduction', 'Net Salary']
 print(outputDic)
@@ -83,6 +88,7 @@ print('=' * 80)
 print('Please double check if information is accurate.')
 outputQuestion = input('Would you want to save this info? (y/n)')
 
+# Output to excel file
 if outputQuestion == 'y':
     fileName = f'BBSalary_{date.today()}.xlsx'
     outputDic.to_excel(fileName)
