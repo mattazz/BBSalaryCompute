@@ -1,0 +1,6 @@
+list to-do:
+
+1. Implement while function to list data for both employees
+2. Make excel file beautiful
+3. Integrate google sheets for excel
+4. Rename excel file to current date
