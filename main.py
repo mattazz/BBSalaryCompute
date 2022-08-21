@@ -39,6 +39,7 @@ while True:
         pass
     print('Input a valid number')
 
+# To be used for "All Output" portion
 allDict = []
 
 if employeeSelect == '2':
@@ -144,6 +145,7 @@ else:
 
     print('Please double check if information is accurate.')
 
+# Make DF for "All Output" Portion
 allDictTEST = pd.DataFrame(allDict)
 print(allDictTEST)
 
