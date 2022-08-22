@@ -32,7 +32,7 @@ print('''Which employee:
 # Input a valid response
 while True:
     try:
-        employeeSelect = input('Select (1/2): ')
+        employeeSelect = input('Select (0/1/2): ')
         if int(employeeSelect) in range(0, 3):
             break
     except:
@@ -86,10 +86,17 @@ if employeeSelect == '2':
         print(f'Net Salary: {netSalary}')
         print('=' * 80)
 
+        # Round numbers (Two Decimals)
+        salaryAmount = round(salaryAmount, 2)
+        philHealthDeduction = round(philHealthDeduction, 2)
+        sssDeduction = round(sssDeduction, 2)
+        pagIbigDeduction = round(pagIbigDeduction, 2)
+        netSalary = round(netSalary, 2)
+
         # Generate Pandas Dataframe with output
         allOutput = {inputName: [salaryAmount, philHealthDeduction, sssDeduction, pagIbigDeduction, netSalary]}
         allDict.append(allOutput)
-        print(allDict)
+        # print(allDict)
 
         print('=' * 80)
 
@@ -136,6 +143,13 @@ else:
     print(f'Net Salary: {netSalary}')
     print('=' * 80)
 
+    # Round Numbers (Two Decimals)
+    salaryAmount = round(salaryAmount, 2)
+    philHealthDeduction = round(philHealthDeduction, 2)
+    sssDeduction = round(sssDeduction, 2)
+    pagIbigDeduction = round(pagIbigDeduction, 2)
+    netSalary = round(netSalary, 2)
+
     # Generate Pandas Dataframe with output
     outputDic = pd.DataFrame({'0': [inputName, salaryAmount, philHealthDeduction, sssDeduction, pagIbigDeduction, netSalary]})
     outputDic.index = ['Name', 'Gross Salary', 'PhilHealth Deduction', 'SSS Deduction', 'Pag-Ibig Deduction', 'Net Salary']
@@ -160,8 +174,10 @@ if outputQuestion == 'y':
     fileName = f'BBSalary_{date.today()}.xlsx'
     if employeeSelect == '2':
         allDictTEST.to_excel(fileName)
+        print(f'File {fileName} saved')
     else:
         outputDic.to_excel(fileName)
+        print(f'File {fileName} saved')
 else:
     print("Ending program.")
 

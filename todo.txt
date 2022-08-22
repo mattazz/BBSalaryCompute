@@ -1,7 +1,8 @@
 list to-do:
 
 [x] Implement while function to list data for both employees
-[] Round values so it doesn't have too many decimal places
+[x] Round values so it doesn't have too many decimal places
+[] Check accuracy of numbers with real life computation
 [] Implement wage for overtime days
 [] Make excel file beautiful
 [] Integrate google sheets for excel
