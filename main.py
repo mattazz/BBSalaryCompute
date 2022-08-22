@@ -87,7 +87,7 @@ if employeeSelect == '2':
         print('=' * 80)
 
         # Generate Pandas Dataframe with output
-        allOutput = {i: [inputName, salaryAmount, philHealthDeduction, sssDeduction, pagIbigDeduction, netSalary]}
+        allOutput = {inputName: [salaryAmount, philHealthDeduction, sssDeduction, pagIbigDeduction, netSalary]}
         allDict.append(allOutput)
         print(allDict)
 
@@ -147,7 +147,9 @@ else:
 
 if employeeSelect == '2':
     # Make DF for "All Output" Portion
-    allDictTEST = pd.DataFrame(allDict)
+    allDictTEST = pd.concat([pd.DataFrame(x) for x in allDict], axis=1)
+    allDictTEST.index = ['Gross Salary', 'PhilHealth Deduction', 'SSS Deduction', 'Pag-Ibig Deduction', 'Net Salary']
+
     print(allDictTEST)
 
 # allOutputDict.index = ['Gross Salary', 'PhilHealth Deduction', 'SSS Deduction', 'Pag-Ibig Deduction', 'Net Salary']
