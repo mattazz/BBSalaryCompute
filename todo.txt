@@ -2,6 +2,10 @@ list to-do:
 
 [x] Implement while function to list data for both employees
 [x] Round values so it doesn't have too many decimal places
+
+
+2.0 to-do
+[] Rework wage system based on real life process
 [] Check accuracy of numbers with real life computation
 [] Implement wage for overtime days
 [] Make excel file beautiful
