@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 print('''
  ____        _                   ____                            _
 / ___|  __ _| | __ _ _ __ _   _ / ___|___  _ __ ___  _ __  _   _| |_ ___
@@ -75,6 +74,9 @@ _   _    _    _     _____   __  __  ___  _   _ _____ _   _
 
             Net Wage: {netWage}''')
     make_line()
+    outputDict = pd.DataFrame({'0': [totalWage, sel1_philHealth, sel1_sss, sel1_pagIbig, netWage]})
+    outputDict.index = ['Total Wage', 'less Philhealth', 'less SSS', 'less Pag Ibig', 'Net Wage']
+    print(outputDict)
 
 
 def selection2():
@@ -132,7 +134,9 @@ def selection2():
 
             Net Wage: {netWage}''')
     print('=' * 80)
-
+    outputDict = pd.DataFrame({'0': [monthlyWage, philHealth, sssEmployeeContrib, pagIbig, netWage]})
+    outputDict.index = ['Monthly Wage', 'less Philhealth', 'less SSS', 'less Pag Ibig', 'Net Wage']
+    print(outputDict)
 
 def selection3():
     print('''
