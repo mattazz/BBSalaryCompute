@@ -5,9 +5,12 @@ list to-do:
 
 
 2.0 to-do
-[] Rework wage system based on real life process
-[] Check accuracy of numbers with real life computation
+[x] Rework wage system based on real life process
+[x] Check accuracy of numbers with real life computation
+
 [] Implement wage for overtime days
+
+[] Output to excel file
 [] Make excel file beautiful
 [] Integrate google sheets for excel
 [] Rename excel file to current date
