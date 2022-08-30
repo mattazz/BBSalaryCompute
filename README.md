@@ -1,9 +1,13 @@
 # BBSalaryCompute
 Automated Computation for Bang Bang Salaries
 
+!! Main.py is not in use anymore, use Main2.0 instead !!
+
+Main2.0
+- Updated salary and benefits computation to match real-world process (Pag-Ibig is deducted 1st half, SSS and PH is deducted 2nd half)
+- Included output for half-month payroll
+- Included salary computation (menu 4) for employees without benefits (part-time and contractual)
+
 Notes: 
-- Salary benefit deductions are computed based on a per day basis. Not sure if this is how it goes in real life.
-ex. (SSS Deduction / (Total Days / Day Range)
-ex. (600 / (30/15)
-ex. (600 / 2)
-ex. SSS Deduction = 300
+- Salary benefit deductions are computed based on a per day basis. For the half-month payroll, deductions are made depending on which half of the month is selected. 
+- Output for half-month payroll is saved in the 'Output' folder
