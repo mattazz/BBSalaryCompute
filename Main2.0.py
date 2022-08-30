@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import date
 
 print('''
  ____        _                   ____                            _
@@ -65,7 +66,15 @@ _   _    _    _     _____   __  __  ___  _   _ _____ _   _
     netWage = totalWage - sel1_philHealth - sel1_sss - sel1_pagIbig
     make_line()
 
+    # FOR OUTPUT
+    outputChoice = input("Do you want to save this output? (y/n)")
+    if outputChoice == 'y':
+        employeeName = input("Input Employee name for output: ")
+    else:
+        employeeName = 'N/A'
+
     print(f'''Payroll:
+            Name: {employeeName}
             Gross Wage: {totalWage}
 
             less Philhealth: {sel1_philHealth} 
@@ -74,9 +83,13 @@ _   _    _    _     _____   __  __  ___  _   _ _____ _   _
 
             Net Wage: {netWage}''')
     make_line()
-    outputDict = pd.DataFrame({'0': [totalWage, sel1_philHealth, sel1_sss, sel1_pagIbig, netWage]})
+    outputDict = pd.DataFrame({employeeName: [totalWage, sel1_philHealth, sel1_sss, sel1_pagIbig, netWage]})
     outputDict.index = ['Total Wage', 'less Philhealth', 'less SSS', 'less Pag Ibig', 'Net Wage']
-    print(outputDict)
+
+    if outputChoice == 'y':
+        filename = f'2.0BBSalary_{date.today()}.xlsx'
+        outputDict.to_excel('Output/'+filename)
+        print(f'{filename} saved')
 
 
 def selection2():
@@ -136,7 +149,7 @@ def selection2():
     print('=' * 80)
     outputDict = pd.DataFrame({'0': [monthlyWage, philHealth, sssEmployeeContrib, pagIbig, netWage]})
     outputDict.index = ['Monthly Wage', 'less Philhealth', 'less SSS', 'less Pag Ibig', 'Net Wage']
-    print(outputDict)
+    # print(outputDict)
 
 def selection3():
     print('''
@@ -228,6 +241,7 @@ elif userchoice == '4':
     selection4()
 else:
     print('Not implemented yet')
+
 
 
 
