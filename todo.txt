@@ -10,7 +10,7 @@ list to-do:
 
 [] Implement wage for overtime days
 
-[] Output to excel file -m "Added the output as a DataFrame, just need to create an xlsx file and write the df"
+[x] Output to excel file
 [] Make excel file beautiful
 [] Integrate google sheets for excel
 [] Rename excel file to current date
