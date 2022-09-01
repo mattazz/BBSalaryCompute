@@ -3,6 +3,9 @@ Automated Computation for Bang Bang Salaries
 
 !! Main.py is not in use anymore, use Main2.0 instead !!
 
+09-01-2022
+- Added a 5th selection for importing wage data from excel file
+
 Main2.0
 - Updated salary and benefits computation to match real-world process (Pag-Ibig is deducted 1st half, SSS and PH is deducted 2nd half)
 - Included output for half-month payroll
