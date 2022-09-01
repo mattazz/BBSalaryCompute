@@ -13,4 +13,3 @@ list to-do:
 [] Make excel file beautiful
 [x] Integrate google sheets for excel -- Importing done as selection5() but still need to output to excel
 [] Organize code!!
- 
