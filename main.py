@@ -22,14 +22,14 @@ employeeDic = {
     '1': ['Rizalyn Repalda', 533, 277.16, 600, 100]
 }
 print()
-# Input getting data of girls
+# WageDetails.xlsx getting data of girls
 print('''Which employee:
     (0) Janet Apostol
     (1) Rizalyn Repalda
     (2) All
     ''')
 
-# Input a valid response
+# WageDetails.xlsx a valid response
 while True:
     try:
         employeeSelect = input('Select (0/1/2): ')
@@ -37,7 +37,7 @@ while True:
             break
     except:
         pass
-    print('Input a valid number')
+    print('WageDetails.xlsx a valid number')
 
 # To be used for "All Output" portion
 allDict = []
@@ -65,7 +65,7 @@ if employeeSelect == '2':
         print('=' * 80)
 
         print()
-        wageDays = input('Input the number of days to compute for wage: ')
+        wageDays = input('WageDetails.xlsx the number of days to compute for wage: ')
         wageDays = int(wageDays)
 
         salaryAmount = int(wageDays) * int(employeeDic[str(i)][1])
@@ -122,7 +122,7 @@ else:
     print('=' * 80)
 
     print()
-    wageDays = input('Input the number of days to compute for wage: ')
+    wageDays = input('WageDetails.xlsx the number of days to compute for wage: ')
     wageDays = int(wageDays)
 
     salaryAmount = int(wageDays) * int(employeeDic[employeeSelect][1])

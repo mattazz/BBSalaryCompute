@@ -1,4 +1,5 @@
 import pandas as pd
+import openpyxl
 from datetime import date
 
 print('''
@@ -69,7 +70,7 @@ _   _    _    _     _____   __  __  ___  _   _ _____ _   _
     # FOR OUTPUT
     outputChoice = input("Do you want to save this output? (y/n)")
     if outputChoice == 'y':
-        employeeName = input("Input Employee name for output: ")
+        employeeName = input("WageDetails.xlsx Employee name for output: ")
     else:
         employeeName = 'N/A'
 
@@ -162,7 +163,7 @@ def selection3():
     ''')
     make_line()
     print("Find SSS Contribution")
-    monthlyWage = int(input("Input monthly wage of employee: "))
+    monthlyWage = int(input("WageDetails.xlsx monthly wage of employee: "))
 
     # Find SSS Employee Contribution
     df = pd.read_excel('SSSTable.xlsx', usecols='A:D')
@@ -196,8 +197,8 @@ def selection4():
    \_/\_/_/   \_\____|_____|  \____\___/|_|  |_|_|    \___/  |_| |_____|
    ''')
     make_line()
-    neWage = int(input("Input daily wage: "))
-    neDaysWorked = int(input("Input days worked: "))
+    neWage = int(input("WageDetails.xlsx daily wage: "))
+    neDaysWorked = int(input("WageDetails.xlsx days worked: "))
     neTotalWage = neWage * neDaysWorked
     print(f'''
 Wage: {neWage}
@@ -205,6 +206,120 @@ Days Worked: {neDaysWorked}
 
 Total Wage: {neTotalWage}
 ''')
+
+
+def selection5():
+    print('''
+___ _   _ ____  _   _ _____  __        ___    ____ _____ 
+|_ _| \ | |  _ \| | | |_   _| \ \      / / \  / ___| ____|
+ | ||  \| | |_) | | | | | |    \ \ /\ / / _ \| |  _|  _|  
+ | || |\  |  __/| |_| | | |     \ V  V / ___ \ |_| | |___ 
+|___|_| \_|_|    \___/  |_|      \_/\_/_/   \_\____|_____|
+                                                          
+    ''')
+    # NAME = [daysWorked, monthlyWage, philHealth, SSS, pagIbig]
+    janet = []
+    riza = []
+
+    today = input('Input date of sheet to import (format: 2022-09-01 or "today"): ')
+    if today == 'today':
+        today = str(date.today())
+    whichHalf = '_' + input('Which half? ("15th" or "30th"): ')
+    filename = 'WageDetails.xlsx'
+
+    if whichHalf == '_15th':
+        ImportedPagIbig = 100
+    else:
+        ImportedPagIbig = 0
+
+    df = pd.read_excel('Input/WageDetails.xlsx', sheet_name=today+whichHalf)
+
+    make_line()
+    print(f'''Imported: {filename}
+Sheet Name: {today+whichHalf}''')
+    print(df)
+    make_line()
+
+    for x in range(len(df)):
+        dfi = pd.read_excel('Input/WageDetails.xlsx', sheet_name=today + whichHalf)
+
+        # print('Running loop', x)
+        employeeName = dfi['Name'].iloc[x]
+        # print("Found name:", employeeName)
+        daysWorked = dfi['DaysWorked'].iloc[x]
+        # print("Found Days Worked:", daysWorked)
+
+        monthlyWage = daysWorked * 533
+
+        if employeeName == 'Janet':
+            janet.append(daysWorked)
+            janet.append(monthlyWage)
+        if employeeName == 'Riza':
+            riza.append(daysWorked)
+            riza.append(monthlyWage)
+
+        # Calculate for Philhealth and append
+        if whichHalf == '_30th':
+            if monthlyWage < 10000:
+                ImportedPhilHealth = 200
+                if employeeName == 'Janet':
+                    janet.append(ImportedPhilHealth)
+                if employeeName == 'Riza':
+                    riza.append(ImportedPhilHealth)
+            else:
+                ImportedPhilHealth = round(monthlyWage * 0.02, 2)
+        else:
+            ImportedPhilHealth = 0
+        if employeeName == 'Janet':
+            janet.append(ImportedPhilHealth)
+        if employeeName == 'Riza':
+            riza.append(ImportedPhilHealth)
+
+        # Find SSS Employee Contribution
+        if whichHalf == '_30th':
+            df = pd.read_excel('SSSTable.xlsx', usecols='A:D')
+            i = 1
+            while i < len(df):
+                minRange = df.iloc[i, 0]
+                maxRange = df.iloc[i, 1]
+
+                if monthlyWage > minRange:
+                    if monthlyWage < maxRange:
+                        # print("Found Range at cell", i, "Between", minRange, "and", maxRange)
+                        # print("Employer Contribution is", df.iloc[i,2])
+                        # print("Employee Contribution is", df.iloc[i,3])
+                        sssEmployerContrib = df.iloc[i, 2]
+                        sssEmployeeContrib = df.iloc[i, 3]
+                        break
+                i += 1
+        else:
+            sssEmployeeContrib = 0
+
+
+        # Append SSS
+        if employeeName == 'Janet':
+            janet.append(sssEmployeeContrib)
+        if employeeName == 'Riza':
+            riza.append(sssEmployeeContrib)
+
+        # Append Pag Ibig
+        janet.append(ImportedPagIbig)
+        riza.append(ImportedPagIbig)
+
+        netWage = monthlyWage - ImportedPhilHealth - sssEmployeeContrib - ImportedPagIbig
+
+        make_line()
+        print(f''' Payroll for: {today}:
+                Name: {employeeName}
+                Monthly Wage: {monthlyWage}
+
+                less Philhealth: {ImportedPhilHealth}
+                less SSS: {sssEmployeeContrib}
+                less Pag Ibig: {ImportedPagIbig}
+
+                Net Wage: {netWage}''')
+        print('=' * 80)
+        x += 1
 
 
 # Set up defaults
@@ -227,8 +342,9 @@ print(f'''MENU:
     (2) Compute for monthly payroll
     (3) Find SSS Contribution
     (4) Non Employee Wage Computation
+    (5) Import Wages from excel
     ''')
-userchoice = input('Input menu selection: ')
+userchoice = input('WageDetails.xlsx menu selection: ')
 
 
 if userchoice == '1':
@@ -239,6 +355,8 @@ elif userchoice == '3':
     selection3()
 elif userchoice == '4':
     selection4()
+elif userchoice == '5':
+    selection5()
 else:
     print('Not implemented yet')
 

@@ -7,10 +7,10 @@ list to-do:
 2.0 to-do
 [x] Rework wage system based on real life process
 [x] Check accuracy of numbers with real life computation
-
 [] Implement wage for overtime days
 
 [x] Output to excel file
 [] Make excel file beautiful
-[] Integrate google sheets for excel
-[] Rename excel file to current date
+[x] Integrate google sheets for excel -- Importing done as selection5() but still need to output to excel
+[] Organize code!!
+ 
