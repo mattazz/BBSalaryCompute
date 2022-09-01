@@ -2,18 +2,6 @@ import pandas as pd
 import openpyxl
 from datetime import date
 
-print('''
- ____        _                   ____                            _
-/ ___|  __ _| | __ _ _ __ _   _ / ___|___  _ __ ___  _ __  _   _| |_ ___
-\___ \ / _` | |/ _` | '__| | | | |   / _ \| '_ ` _ \| '_ \| | | | __/ _ 
- ___) | (_| | | (_| | |  | |_| | |__| (_) | | | | | | |_) | |_| | ||  __/
-|____/ \__,_|_|\__,_|_|   \__, |\____\___/|_| |_| |_| .__/ \__,_|\__\___|
-
-Bang Bang Salary computation with deductions for net pay slip generation
-V0.2
-@Mattazz
-''')
-
 
 def make_line():
     print("=" * 80)
@@ -26,6 +14,7 @@ _   _    _    _     _____   __  __  ___  _   _ _____ _   _
 | |_| | / _ \ | |   | |_    | |\/| | | | |  \| | | | | |_| |
 |  _  |/ ___ \| |___|  _|   | |  | | |_| | |\  | | | |  _  |
 |_| |_/_/   \_\_____|_|     |_|  |_|\___/|_| \_| |_| |_| |_|
+Computes for payroll every 1st or 2nd half of the month based on user input.
     ''')
     make_line()
     whichMonth = input("Which half of the month? (1 = 1st, 2 = 2nd) >")
@@ -70,7 +59,7 @@ _   _    _    _     _____   __  __  ___  _   _ _____ _   _
     # FOR OUTPUT
     outputChoice = input("Do you want to save this output? (y/n)")
     if outputChoice == 'y':
-        employeeName = input("WageDetails.xlsx Employee name for output: ")
+        employeeName = input("Employee name for output: ")
     else:
         employeeName = 'N/A'
 
@@ -101,6 +90,9 @@ def selection2():
 | |\/| | | | |  \| | | | | |_| | |  \ V /   \ \ /\ / / _ \| |  _|  _|  
 | |  | | |_| | |\  | | | |  _  | |___| |     \ V  V / ___ \ |_| | |___ 
 |_|  |_|\___/|_| \_| |_| |_| |_|_____|_|      \_/\_/_/   \_\____|_____|
+
+Computes the full monthly wage and benefit deductions. 
+- Disregards 15th or 30th deductions and gives all deductions for final reporting.
 ''')
     daysWorked = int(input('How many days worked?: '))
     monthlyWage = daysWorked * wage
@@ -152,6 +144,7 @@ def selection2():
     outputDict.index = ['Monthly Wage', 'less Philhealth', 'less SSS', 'less Pag Ibig', 'Net Wage']
     # print(outputDict)
 
+
 def selection3():
     print('''
  ____ ____ ____    ____  _____ _____ _  __
@@ -159,11 +152,13 @@ def selection3():
 \___ \___ \___ \  \___ \|  _| |  _| | ' / 
  ___) |__) |__) |  ___) | |___| |___| . \ 
 |____/____/____/  |____/|_____|_____|_|\_
-                                          
+
+Checks employee and employer contribution based on salary input
+- Current SSS contributions table for January 2022                                 
     ''')
     make_line()
     print("Find SSS Contribution")
-    monthlyWage = int(input("WageDetails.xlsx monthly wage of employee: "))
+    monthlyWage = int(input("Monthly wage of employee: "))
 
     # Find SSS Employee Contribution
     df = pd.read_excel('SSSTable.xlsx', usecols='A:D')
@@ -197,42 +192,60 @@ def selection4():
    \_/\_/_/   \_\____|_____|  \____\___/|_|  |_|_|    \___/  |_| |_____|
    ''')
     make_line()
-    neWage = int(input("WageDetails.xlsx daily wage: "))
-    neDaysWorked = int(input("WageDetails.xlsx days worked: "))
+    neWage = int(input("Daily wage: "))
+    neDaysWorked = int(input("Days worked: "))
     neTotalWage = neWage * neDaysWorked
+    make_line()
     print(f'''
 Wage: {neWage}
 Days Worked: {neDaysWorked}
 
 Total Wage: {neTotalWage}
 ''')
+    make_line()
 
 
 def selection5():
     print('''
-___ _   _ ____  _   _ _____  __        ___    ____ _____ 
-|_ _| \ | |  _ \| | | |_   _| \ \      / / \  / ___| ____|
- | ||  \| | |_) | | | | | |    \ \ /\ / / _ \| |  _|  _|  
- | || |\  |  __/| |_| | | |     \ V  V / ___ \ |_| | |___ 
-|___|_| \_|_|    \___/  |_|      \_/\_/_/   \_\____|_____|
-                                                          
+ ___ __  __ ____   ___  ____ _____  __        ___    ____ _____ 
+|_ _|  \/  |  _ \ / _ \|  _ \_   _| \ \      / / \  / ___| ____|
+ | || |\/| | |_) | | | | |_) || |    \ \ /\ / / _ \| |  _|  _|  
+ | || |  | |  __/| |_| |  _ < | |     \ V  V / ___ \ |_| | |___ 
+|___|_|  |_|_|    \___/|_| \_\|_|      \_/\_/_/   \_\____|_____|
+
+Computes wage less benefit deductions by importing an excel file and extracting data of days worked.
+- Checks if the payroll is for the 15th or 30th and appropriately sets the benefits deductions
+
+15th deduction - Pag Ibig
+30th deductions - SSS, PhilHealth 
+
+NOTE: 30th means 2nd half of the month, not necessarily the 30th of the month. I might fix the language later on.                                                    
     ''')
     # NAME = [daysWorked, monthlyWage, philHealth, SSS, pagIbig]
     janet = []
     riza = []
 
-    today = input('Input date of sheet to import (format: 2022-09-01 or "today"): ')
-    if today == 'today':
-        today = str(date.today())
-    whichHalf = '_' + input('Which half? ("15th" or "30th"): ')
-    filename = 'WageDetails.xlsx'
 
-    if whichHalf == '_15th':
-        ImportedPagIbig = 100
-    else:
-        ImportedPagIbig = 0
 
-    df = pd.read_excel('Input/WageDetails.xlsx', sheet_name=today+whichHalf)
+    while True:
+        try:
+            make_line()
+            today = input('Input date of sheet to import (format: 2022-09-01 or "today"): ')
+            if today == 'today':
+                today = str(date.today())
+            whichHalf = '_' + input('Which half? ("15th" or "30th"): ')
+            filename = 'WageDetails.xlsx'
+
+            if whichHalf == '_15th':
+                ImportedPagIbig = 100
+            else:
+                ImportedPagIbig = 0
+
+            make_line()
+            df = pd.read_excel('Input/WageDetails.xlsx', sheet_name=today+whichHalf)
+            break
+        except:
+            print(f" Sheet {today+whichHalf} not found in excel sheet. Please try again.")
 
     make_line()
     print(f'''Imported: {filename}
@@ -322,6 +335,19 @@ Sheet Name: {today+whichHalf}''')
         x += 1
 
 
+
+print('''
+ ____        _                   ____                            _
+/ ___|  __ _| | __ _ _ __ _   _ / ___|___  _ __ ___  _ __  _   _| |_ ___
+\___ \ / _` | |/ _` | '__| | | | |   / _ \| '_ ` _ \| '_ \| | | | __/ _ 
+ ___) | (_| | | (_| | |  | |_| | |__| (_) | | | | | | |_) | |_| | ||  __/
+|____/ \__,_|_|\__,_|_|   \__, |\____\___/|_| |_| |_| .__/ \__,_|\__\___|
+
+Bang Bang Salary computation with deductions for net pay slip generation
+V0.2
+@Mattazz
+''')
+
 # Set up defaults
 philHealth = 0  # ER 2% if > 10000 wage, else 200
 sss = 0
@@ -344,8 +370,7 @@ print(f'''MENU:
     (4) Non Employee Wage Computation
     (5) Import Wages from excel
     ''')
-userchoice = input('WageDetails.xlsx menu selection: ')
-
+userchoice = input('menu selection: ')
 
 if userchoice == '1':
     selection1()
@@ -359,7 +384,5 @@ elif userchoice == '5':
     selection5()
 else:
     print('Not implemented yet')
-
-
 
 
