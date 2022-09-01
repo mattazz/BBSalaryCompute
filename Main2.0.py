@@ -230,7 +230,7 @@ NOTE: 30th means 2nd half of the month, not necessarily the 30th of the month. I
     while True:
         try:
             make_line()
-            today = input('Input date of sheet to import (format: 2022-09-01 or "today"): ')
+            today = input('Input date of sheet to import (format: 2022-09-15 or "today"): ')
             if today == 'today':
                 today = str(date.today())
             whichHalf = '_' + input('Which half? ("15th" or "30th"): ')
