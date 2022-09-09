@@ -217,15 +217,10 @@ Computes wage less benefit deductions by importing an excel file and extracting 
 - Checks if the payroll is for the 15th or 30th and appropriately sets the benefits deductions
 
 15th deduction - Pag Ibig
-30th deductions - SSS, PhilHealth 
-
-NOTE: 30th means 2nd half of the month, not necessarily the 30th of the month. I might fix the language later on.                                                    
-    ''')
+30th deductions - SSS, PhilHealth ''')
     # NAME = [daysWorked, monthlyWage, philHealth, SSS, pagIbig]
     janet = []
     riza = []
-
-
 
     while True:
         try:
@@ -233,10 +228,9 @@ NOTE: 30th means 2nd half of the month, not necessarily the 30th of the month. I
             today = input('Input date of sheet to import (format: 2022-09-15 or "today"): ')
             if today == 'today':
                 today = str(date.today())
-            # whichHalf = '_' + input('Which half? ("15th" or "30th"): ')
             whichHalfSplit = today.split('-')
-            whichHalfSplit = whichHalfSplit[2]
-            whichHalf = '_' + whichHalfSplit + 'th'
+            whichHalfSplit = whichHalfSplit[2] # Gets the '15' or '30' value from the split list input 
+            whichHalf = '_' + whichHalfSplit + 'th' # Variable to process the sheet name because I'm lazy to refactor
             filename = 'WageDetails.xlsx'
 
             if whichHalfSplit == '15':
@@ -245,7 +239,7 @@ NOTE: 30th means 2nd half of the month, not necessarily the 30th of the month. I
                 ImportedPagIbig = 0
 
             make_line()
-            df = pd.read_excel('Input/WageDetails.xlsx', sheet_name=today+whichHalf)
+            df = pd.read_excel('Input/WageDetails.xlsx', sheet_name=today+whichHalf) # Gets the sheet name based on the date
             break
         except:
             print(f" Sheet {today+whichHalf} not found in excel sheet. Please try again.")
