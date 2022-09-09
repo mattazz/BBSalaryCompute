@@ -341,7 +341,7 @@ print('''
 |____/ \__,_|_|\__,_|_|   \__, |\____\___/|_| |_| |_| .__/ \__,_|\__\___|
 
 Bang Bang Salary computation with deductions for net pay slip generation
-V0.2
+V0.3
 @Mattazz
 ''')
 
