@@ -233,10 +233,13 @@ NOTE: 30th means 2nd half of the month, not necessarily the 30th of the month. I
             today = input('Input date of sheet to import (format: 2022-09-15 or "today"): ')
             if today == 'today':
                 today = str(date.today())
-            whichHalf = '_' + input('Which half? ("15th" or "30th"): ')
+            # whichHalf = '_' + input('Which half? ("15th" or "30th"): ')
+            whichHalfSplit = today.split('-')
+            whichHalfSplit = whichHalfSplit[2]
+            whichHalf = '_' + whichHalfSplit + 'th'
             filename = 'WageDetails.xlsx'
 
-            if whichHalf == '_15th':
+            if whichHalfSplit == '15':
                 ImportedPagIbig = 100
             else:
                 ImportedPagIbig = 0
