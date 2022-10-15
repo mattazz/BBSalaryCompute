@@ -260,7 +260,7 @@ Sheet Name: {today+whichHalf}''')
         # print("Found Days Worked:", daysWorked)
 
         # Compute for monthly wage
-        monthlyWage = (daysWorked * 533) * 2
+        monthlyWage = (daysWorked * 533) 
 
         if employeeName == 'Janet':
             janet.append(daysWorked)
