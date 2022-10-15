@@ -259,6 +259,7 @@ Sheet Name: {today+whichHalf}''')
         daysWorked = dfi['DaysWorked'].iloc[x]
         # print("Found Days Worked:", daysWorked)
 
+        # Compute for monthly wage
         monthlyWage = (daysWorked * 533) * 2
 
         if employeeName == 'Janet':
@@ -295,9 +296,6 @@ Sheet Name: {today+whichHalf}''')
 
                 if monthlyWage > minRange:
                     if monthlyWage < maxRange:
-                        # print("Found Range at cell", i, "Between", minRange, "and", maxRange)
-                        # print("Employer Contribution is", df.iloc[i,2])
-                        # print("Employee Contribution is", df.iloc[i,3])
                         sssEmployerContrib = df.iloc[i, 2]
                         sssEmployeeContrib = df.iloc[i, 3]
                         break
