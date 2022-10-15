@@ -259,7 +259,7 @@ Sheet Name: {today+whichHalf}''')
         daysWorked = dfi['DaysWorked'].iloc[x]
         # print("Found Days Worked:", daysWorked)
 
-        monthlyWage = daysWorked * 533
+        monthlyWage = (daysWorked * 533) * 2
 
         if employeeName == 'Janet':
             janet.append(daysWorked)
@@ -269,7 +269,7 @@ Sheet Name: {today+whichHalf}''')
             riza.append(monthlyWage)
 
         # Calculate for Philhealth and append
-        if whichHalf == '_30th':
+        if whichHalf == '_30th' or whichHalf == '_31th':
             if monthlyWage < 10000:
                 ImportedPhilHealth = 200
                 if employeeName == 'Janet':
@@ -286,7 +286,7 @@ Sheet Name: {today+whichHalf}''')
             riza.append(ImportedPhilHealth)
 
         # Find SSS Employee Contribution
-        if whichHalf == '_30th':
+        if whichHalf == '_30th' or whichHalf == '_31th':
             df = pd.read_excel('SSSTable.xlsx', usecols='A:D')
             i = 1
             while i < len(df):
