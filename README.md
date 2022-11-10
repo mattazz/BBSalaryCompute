@@ -18,7 +18,7 @@ Automated Computation for Philippines Salaries with contributions (SSS, Philheal
 - Wage computation taken from inputting salary values in the excel file ('Input' folder)
 
 
-
+# Notes
 09-09-2022
 - Improved on the import function not needed the '15th or 30th' input from the user anymore and just reads the date
 - Added comments to the code for readability 
