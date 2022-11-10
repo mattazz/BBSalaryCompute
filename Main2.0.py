@@ -352,8 +352,8 @@ wage = 533
 make_line()
 # ID : ['NAME', Wage, Philhealth, SSS, PagIbig] -- CURRENTLY NOT USED IN THIS VERSION
 employeeDic = {
-    '0': ['Janet Apostol', wage, philHealth, sss, pagIbig],
-    '1': ['Rizalyn Repalda', wage, philHealth, sss, pagIbig]
+    '0': ['Janet', wage, philHealth, sss, pagIbig],
+    '1': ['Rizalyn', wage, philHealth, sss, pagIbig]
 }
 print()
 
