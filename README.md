@@ -1,7 +1,7 @@
 # BBSalaryCompute
 Automated Computation for Bang Bang Salaries
 
-!! Main.py is not in use anymore, use Main2.0 instead !!
+
 
 09-09-2022
 - Improved on the import function not needed the '15th or 30th' input from the user anymore and just reads the date
