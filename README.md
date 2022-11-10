@@ -1,5 +1,21 @@
 # BBSalaryCompute
-Automated Computation for Bang Bang Salaries
+Automated Computation for Philippines Salaries with contributions (SSS, Philhealth, Pag-Ibig) based on monthly wage
+
+## Menu Details
+1. Compute for Half Month Payroll
+- Computes the payroll while taking into consideration the deductions for the first half or the second half of the month.
+
+2. Compute for Monthly Payroll
+- Computes for the monthly payroll while considering ALL deductions for the whole month 
+
+3. Find SSS Contribution
+- Find the total employer and employee contributions based on the most recent SSS contributions Table
+
+4. Non Employee Wage Computation
+- Simple wage computation for part-time employees that don't have contributions
+
+5. Import Wages from Excel
+- Wage computation taken from inputting salary values in the excel file ('Input' folder)
 
 
 
