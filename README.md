@@ -1,4 +1,4 @@
-# BBSalaryCompute
+# Philippine Salary Compute
 Automated Computation for Philippines Salaries with contributions (SSS, Philhealth, Pag-Ibig) based on monthly wage
 
 ## Menu Details
